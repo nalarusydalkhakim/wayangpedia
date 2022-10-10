@@ -212,17 +212,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8944091255541105463, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
   m_PrefabInstance: {fileID: 8944091255737291873}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &366122842 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
-  m_PrefabInstance: {fileID: 8944091255737291873}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6273189e03feff9a3946e02c18d36ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &425386706
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +340,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1721634848}
     m_Modifications:
+    - target: {fileID: 1803205713872985872, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
+      propertyPath: m_Group
+      value: 
+      objectReference: {fileID: 1721634852}
     - target: {fileID: 8944091255541105460, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: m_Name
       value: ToggleButton (2)
@@ -446,17 +439,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8944091255541105463, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
   m_PrefabInstance: {fileID: 491188754}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &642771690 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
-  m_PrefabInstance: {fileID: 491188754}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6273189e03feff9a3946e02c18d36ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &765734681
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +658,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1721634848}
     m_Modifications:
+    - target: {fileID: 1803205713872985872, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
+      propertyPath: m_Group
+      value: 
+      objectReference: {fileID: 1721634852}
     - target: {fileID: 8944091255541105460, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: m_Name
       value: ToggleButton (1)
@@ -771,17 +757,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8944091255541105463, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
   m_PrefabInstance: {fileID: 1426580749}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1426580751 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
-  m_PrefabInstance: {fileID: 1426580749}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6273189e03feff9a3946e02c18d36ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1478718552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,13 +1043,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1721634847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4845a7f67fad9ed2aa6da97ef7a91fdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toggles:
-  - {fileID: 366122842}
-  - {fileID: 1426580751}
-  - {fileID: 642771690}
+  m_AllowSwitchOff: 0
 --- !u!1001 &8944091255737291873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1082,6 +1054,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1721634848}
     m_Modifications:
+    - target: {fileID: 1803205713872985872, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
+      propertyPath: m_Group
+      value: 
+      objectReference: {fileID: 1721634852}
     - target: {fileID: 8944091254649374517, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: m_IsActive
       value: 0

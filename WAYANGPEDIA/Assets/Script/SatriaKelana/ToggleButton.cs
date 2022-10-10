@@ -8,7 +8,7 @@ using UnityEditor;
 
 namespace SatriaKelana
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(Toggle))]
     public class ToggleButton : MonoBehaviour
     {
         [SerializeField] GameObject _activatedGO;
@@ -18,26 +18,20 @@ namespace SatriaKelana
 
         public bool Valid => _activatedGO != null && _deactivatedGO != null;
         public bool Active => _activated;
-        public UnityEvent<bool> OnToggled => _onToggled;
         public event Action<ToggleButton> OnActivated;
 
-        Button _button;
+        Toggle _toggle;
 
         void Awake()
         {
-            TryGetComponent(out _button);
-            _button.onClick.AddListener(OnClick);
+            TryGetComponent(out _toggle);
+            _toggle.onValueChanged.AddListener(OnValueChanged);
+            _toggle.isOn = _activated;
         }
 
-        void OnClick()
+        void OnValueChanged(bool value)
         {
-            Toggle();
-        }
-
-        private void Toggle()
-        {
-            _activated = !_activated;
-            SetState(_activated);
+            SetState(value);
         }
 
         public void SetState(bool activated)

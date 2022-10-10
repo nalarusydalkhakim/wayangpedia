@@ -87,8 +87,8 @@ GameObject:
   - component: {fileID: 8944091255541105463}
   - component: {fileID: 8944091255541105464}
   - component: {fileID: 8944091255541105465}
-  - component: {fileID: 8944091255541105462}
   - component: {fileID: 8944091255541105467}
+  - component: {fileID: 1803205713872985872}
   m_Layer: 5
   m_Name: ToggleButton
   m_TagString: Untagged
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8944091255541105462
+--- !u!114 &8944091255541105467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,11 +165,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 8944091255541105460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 6273189e03feff9a3946e02c18d36ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activatedGO: {fileID: 8944091255741532773}
+  _deactivatedGO: {fileID: 8944091254649374517}
+  _onToggled:
+    m_PersistentCalls:
+      m_Calls: []
+  _activated: 0
+--- !u!114 &1803205713872985872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944091255541105460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: 3
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -197,27 +215,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8944091255541105465}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8944091255541105467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8944091255541105460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6273189e03feff9a3946e02c18d36ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activatedGO: {fileID: 8944091255741532773}
-  _deactivatedGO: {fileID: 8944091254649374517}
-  _onToggled:
-    m_PersistentCalls:
-      m_Calls: []
-  _activated: 0
+  m_IsOn: 0
 --- !u!1 &8944091255741532773
 GameObject:
   m_ObjectHideFlags: 0
