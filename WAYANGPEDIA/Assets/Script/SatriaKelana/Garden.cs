@@ -7,14 +7,14 @@ namespace SatriaKelana
 {
     public class Garden : MonoBehaviour, IPersistent
     {
-        [SerializeField] Plant[] _plants;
+        [SerializeField] Area[] _plants;
         [SerializeField] SaveManager _saveManager;
         [SerializeField] GameObject _coin;
         [SerializeField] RectTransform _coinBar;
 
         public void Load()
         {
-            var success = _saveManager.BinaryLoad<List<Plant.State>>(name, out var states);
+            var success = _saveManager.BinaryLoad<List<Area.TimeConstraint>>(name, out var states);
             if (!success) return;
             for (int i = 0; i < _plants.Length; i++)
             {
@@ -25,7 +25,7 @@ namespace SatriaKelana
             }
         }
         
-        public void OnCollect(Plant plant)
+        public void OnCollect(Area plant)
         {
             var position = Camera.main.WorldToScreenPoint(plant.transform.position);
             var coin = Instantiate(_coin, position, Quaternion.identity);
@@ -42,7 +42,7 @@ namespace SatriaKelana
 
         public void Save()
         {
-            var states = _plants.Select(p => p.CurrentState).ToList();
+            var states = _plants.Select(p => p.CurrentConstraint).ToList();
             _saveManager.BinarySave(states, name);
         }
 
