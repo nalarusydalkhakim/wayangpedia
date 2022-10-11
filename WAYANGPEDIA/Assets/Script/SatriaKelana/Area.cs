@@ -64,7 +64,7 @@ namespace SatriaKelana
             var duration = _plant.Duration;
             var currentDuration = (DateTime.Now - CurrentConstraint.StartTime).TotalSeconds;
             var currentPercentage = currentDuration / duration;
-            var index = Mathf.Clamp((int)Math.Floor(currentPercentage / percentage), 0, length - 1);
+            var index = Mathf.Clamp((int)Math.Floor(currentPercentage / percentage), 0, Mathf.Max(0, length - 1));
             _renderer.sprite = _plant.Sprites[index];
             if (currentDuration >= duration)
             {
