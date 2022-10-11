@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SatriaKelana
 {
+    [CreateAssetMenu(menuName = "Garden/Plant", fileName = "New plant")]
     public class Plant : ScriptableObject
     {
         [SerializeField] private string _name;

@@ -1,33 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utility;
 
 namespace SatriaKelana
 {
     public class Garden : MonoBehaviour, IPersistent
     {
-        [SerializeField] Area[] _plants;
-        [SerializeField] SaveManager _saveManager;
-        [SerializeField] GameObject _coin;
-        [SerializeField] RectTransform _coinBar;
+        [SerializeField] private Area[] _areas;
+        [SerializeField] private SaveManager _saveManager;
+        [SerializeField] private GameObject _coin;
+        [SerializeField] private RectTransform _coinBar;
+        [SerializeField] private PlantStorage _storage;
 
         public void Load()
         {
-            var success = _saveManager.BinaryLoad<List<Area.TimeConstraint>>(name, out var states);
+            var success = _saveManager.BinaryLoad<List<AreaRecord>>(name, out var states);
             if (!success) return;
-            for (int i = 0; i < _plants.Length; i++)
+            foreach (var state in states)
             {
-                var plant = _plants[i];
-                var state = states[i];
-                plant.Load(state);
-                plant.OnCollect += OnCollect;
+                var plant = _storage.Get(state.PlantIndex);
+                if (plant == null) continue;
+                
+                var area = _areas[state.Index];
+                var constraint = state.Constraint;
+                area.Load(plant, constraint);
+            }
+
+            foreach (var area in _areas)
+            {
+                area.OnCollect += OnCollect;
+                area.OnPickPlant += OnPickPlant;
             }
         }
-        
-        public void OnCollect(Area plant)
+
+        private void OnPickPlant(Area area)
         {
-            var position = Camera.main.WorldToScreenPoint(plant.transform.position);
+            area.SetPlant(_storage.Get(0));
+        }
+
+        private void OnCollect(Area area)
+        {
+            var position = Camera.main.WorldToScreenPoint(area.transform.position);
             var coin = Instantiate(_coin, position, Quaternion.identity);
             coin.transform.SetParent(_coinBar.root);
             coin.transform.localScale = Vector3.one * 0.5f;
@@ -42,11 +58,16 @@ namespace SatriaKelana
 
         public void Save()
         {
-            var states = _plants.Select(p => p.CurrentConstraint).ToList();
-            _saveManager.BinarySave(states, name);
+            var records = _areas.Select((a, i) => new AreaRecord
+            {
+                Index = i,
+                Constraint = a.CurrentConstraint,
+                PlantIndex = _storage.Plants.IndexOf(a.Plant)
+            }).ToList();
+            _saveManager.BinarySave(records, name);
         }
 
-        void Awake()
+        private void Awake()
         {
             _saveManager.Register(this);
             Load();

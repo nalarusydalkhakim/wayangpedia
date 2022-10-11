@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8238270368941546233}
   - component: {fileID: 8238270368941546235}
-  - component: {fileID: 8238270368941546234}
   - component: {fileID: 8008427227401532056}
+  - component: {fileID: 2719924918221772916}
   m_Layer: 0
   m_Name: Area
   m_TagString: Untagged
@@ -171,32 +171,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8238270368941546234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238270368941546232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e0d08ecbaa5c6d1966177dfa92d960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderer: {fileID: 8238270368599820080}
-  _stages:
-  - _name: Sprout
-    _sprite: {fileID: 21300000, guid: 8a13b7749c8f04f448586074588078a2, type: 3}
-    _duration: 2
-  - _name: Seedling
-    _sprite: {fileID: 21300000, guid: e0fbc21938a47db40ad2bdcda3c69cd0, type: 3}
-    _duration: 2
-  - _name: Flowering
-    _sprite: {fileID: 21300000, guid: 6bd02c8fee2c31b40a42f05ad3505a0d, type: 3}
-    _duration: 2
-  - _name: Ripening
-    _sprite: {fileID: 21300000, guid: 69c5780b35dc36247a8a4f15d98a5ce2, type: 3}
-    _duration: 1
 --- !u!61 &8008427227401532056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -223,3 +197,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.75, y: 1.75}
   m_EdgeRadius: 0
+--- !u!114 &2719924918221772916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238270368941546232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc8e1bc017346f6b677e7a5d9517ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 8238270368599820080}
+  _plant: {fileID: 0}
