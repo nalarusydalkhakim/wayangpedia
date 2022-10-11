@@ -35,12 +35,14 @@ namespace SatriaKelana
         public State CurrentState { get; private set; }
         public bool Done { get; private set; }
         bool _loaded = false;
+        int _totalDuration;
 
         private void Start()
         {
+            _totalDuration = _stages.Sum(s => s.Duration);
             if (_loaded) return;
             var start = DateTime.Now;
-            var end = start.AddSeconds(_stages.Sum(s => s.Duration));
+            var end = start.AddSeconds(_totalDuration);
             CurrentState = new State
             {
                 StartTime = start,
@@ -55,7 +57,7 @@ namespace SatriaKelana
             foreach (var stage in _stages)
             {
                 countTime += stage.Duration;
-                if (currentDuration <= countTime)
+                if (Mathf.Clamp((float)currentDuration, 0, _totalDuration) <= countTime)
                 {
                     _renderer.sprite = stage.Sprite;
                     break;
@@ -67,7 +69,7 @@ namespace SatriaKelana
             // And when the user click, start a coin collection animation
             // Increase user's coin
         }
-        
+
         public void Load(State state)
         {
             CurrentState = state;
