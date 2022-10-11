@@ -9,6 +9,8 @@ namespace SatriaKelana
     {
         [SerializeField] Plant[] _plants;
         [SerializeField] SaveManager _saveManager;
+        [SerializeField] GameObject _coin;
+        [SerializeField] RectTransform _coinBar;
 
         public void Load()
         {
@@ -19,7 +21,23 @@ namespace SatriaKelana
                 var plant = _plants[i];
                 var state = states[i];
                 plant.Load(state);
+                plant.OnCollect += OnCollect;
             }
+        }
+        
+        public void OnCollect(Plant plant)
+        {
+            var position = Camera.main.WorldToScreenPoint(plant.transform.position);
+            var coin = Instantiate(_coin, position, Quaternion.identity);
+            coin.transform.SetParent(_coinBar.root);
+            coin.transform.localScale = Vector3.one * 0.5f;
+            coin
+                .LeanMove(_coinBar.position, .5f)
+                .setEaseInOutSine()
+                .setOnComplete(() => Destroy(coin));
+            coin
+                .LeanScale(Vector3.one, .25f)
+                .setLoopPingPong();
         }
 
         public void Save()

@@ -94,6 +94,8 @@ MonoBehaviour:
   - {fileID: 8985494664903805913}
   - {fileID: 8985494663330553920}
   _saveManager: {fileID: 0}
+  _coin: {fileID: 4000848786313797433, guid: e00220da3767e328aa90d0c3b1f3a19e, type: 3}
+  _coinBar: {fileID: 0}
 --- !u!1001 &1073779252653425054
 PrefabInstance:
   m_ObjectHideFlags: 0

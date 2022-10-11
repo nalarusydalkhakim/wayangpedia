@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace SatriaKelana
@@ -34,6 +32,7 @@ namespace SatriaKelana
 
         public State CurrentState { get; private set; }
         public bool Done { get; private set; }
+        public event Action<Plant> OnCollect;
         bool _loaded = false;
         int _totalDuration;
 
@@ -41,13 +40,7 @@ namespace SatriaKelana
         {
             _totalDuration = _stages.Sum(s => s.Duration);
             if (_loaded) return;
-            var start = DateTime.Now;
-            var end = start.AddSeconds(_totalDuration);
-            CurrentState = new State
-            {
-                StartTime = start,
-                EndTime = end
-            };
+            ResetState();
         }
 
         private void Update()
@@ -68,6 +61,30 @@ namespace SatriaKelana
             // Wait for user click
             // And when the user click, start a coin collection animation
             // Increase user's coin
+        }
+        
+        void OnMouseDown()
+        {
+            if (!Done) return;
+            Collect();
+        }
+        
+        public void Collect()
+        {
+            ResetState();
+            OnCollect?.Invoke(this);
+        }
+        
+        void ResetState()
+        {
+            var start = DateTime.Now;
+            var end = start.AddSeconds(_totalDuration);
+            CurrentState = new State
+            {
+                StartTime = start,
+                EndTime = end
+            };
+            Done = false;
         }
 
         public void Load(State state)
