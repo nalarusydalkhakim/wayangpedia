@@ -12,7 +12,8 @@ namespace SatriaKelana
 
         public void Load()
         {
-            var states = _saveManager.BinaryLoad<List<Plant.State>>(name);
+            var success = _saveManager.BinaryLoad<List<Plant.State>>(name, out var states);
+            if (!success) return;
             for (int i = 0; i < _plants.Length; i++)
             {
                 var plant = _plants[i];
@@ -29,6 +30,7 @@ namespace SatriaKelana
 
         void Awake()
         {
+            _saveManager.Register(this);
             Load();
         }
     }

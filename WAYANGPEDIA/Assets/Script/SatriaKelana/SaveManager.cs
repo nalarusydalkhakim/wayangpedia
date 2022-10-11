@@ -9,7 +9,7 @@ namespace SatriaKelana
 {
     public class SaveManager : MonoBehaviour
     {
-        List<IPersistent> _items;
+        List<IPersistent> _items = new List<IPersistent>();
         public void Register(IPersistent item)
         {
             _items.Add(item);
@@ -39,19 +39,26 @@ namespace SatriaKelana
             }
         }
 
-        public T BinaryLoad<T>(string name)
+        public bool BinaryLoad<T>(string name, out T output)
         {
             var path = GetPath(name);
-            using var fs = new FileStream(path, FileMode.Create);
+            if (!File.Exists(path))
+            {
+                output = default(T);
+                return false;
+            }
+            using var fs = new FileStream(path, FileMode.Open);
             var formatter = new BinaryFormatter();
             try
             {
-                return (T)formatter.Deserialize(fs);
+                output = (T)formatter.Deserialize(fs);
+                return true;
             }
             catch (SerializationException e)
             {
                 Debug.LogError($"Error loading file `{path}`: {e.Message}", this);
-                throw;
+                output = default(T);
+                return false;
             }
         }
 
