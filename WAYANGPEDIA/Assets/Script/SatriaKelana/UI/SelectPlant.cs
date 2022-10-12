@@ -36,19 +36,21 @@ namespace SatriaKelana.UI
 
         private void OnPrevious()
         {
-            _index--;
+            _index = Mathf.Clamp(_index - 1, 0, _storage.Plants.Count - 1);
             var sequence = LeanTween.sequence();
-            sequence.append(_seedImage.transform.LeanMoveX(_previous.transform.position.x, .25f));
-            sequence.append(() => _seedImage.transform.position = _next.transform.position);
+            sequence.append(_seedImage.transform.LeanMove(_previous.transform.position, .25f));
+            sequence.append(_seedImage.transform.LeanMove(_next.transform.position, 0f));
             sequence.append(_seedImage.transform.LeanMoveLocal(Vector3.zero, .25f));
             var scaleSequence = LeanTween.sequence();
             scaleSequence.append(_seedImage.transform.LeanScale(Vector3.one * .5f, .25f));
             scaleSequence.append(_seedImage.transform.LeanScale(Vector3.one, .25f));
+            sequence.append(() => SetPlant(_index));
         }
 
         private void OnNext()
         {
-            _index++;
+            _index = Mathf.Clamp(_index + 1, 0, _storage.Plants.Count - 1);
+            SetPlant(_index);
         }
 
         private void SetPlant(int index)
