@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using SatriaKelana.UI;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -53,13 +54,13 @@ namespace SatriaKelana
             var coin = Instantiate(_coin, position, Quaternion.identity);
             coin.transform.SetParent(_coinBar.root);
             coin.transform.localScale = Vector3.one * 0.5f;
-            coin
-                .LeanMove(_coinBar.position, .5f)
-                .setEaseInOutSine()
-                .setOnComplete(() => Destroy(coin));
-            coin
-                .LeanScale(Vector3.one, .25f)
-                .setLoopPingPong();
+            coin.transform
+                .DOMove(_coinBar.position, .5f)
+                .SetEase(Ease.InOutSine)
+                .OnComplete(() => Destroy(coin));
+            coin.transform
+                .DOScale(Vector3.one, .25f)
+                .SetLoops(2, LoopType.Yoyo);
         }
 
         public void Save()
