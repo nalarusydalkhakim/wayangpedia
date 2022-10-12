@@ -19,6 +19,7 @@ namespace SatriaKelana
         public bool Valid => _activatedGO != null && _deactivatedGO != null;
         public bool Active => _activated;
         public event Action<ToggleButton> OnActivated;
+        public event Action<bool> OnToggled;
 
         Toggle _toggle;
 
@@ -39,6 +40,7 @@ namespace SatriaKelana
             _activatedGO.SetActive(activated);
             _deactivatedGO.SetActive(!activated);
             _onToggled?.Invoke(activated);
+            OnToggled?.Invoke(activated);
             if (activated)
             {
                 OnActivated?.Invoke(this);
