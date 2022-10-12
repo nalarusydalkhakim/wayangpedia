@@ -101,6 +101,8 @@ namespace SatriaKelana
         private void Collect()
         {
             if (_state != State.Ripening) return;
+            var coins = PlayerPrefs.GetInt("Coin", 0);
+            PlayerPrefs.SetInt("Coin", coins + _plant.HarvestCoin);
             ResetState();
             OnCollect?.Invoke(this);
         }

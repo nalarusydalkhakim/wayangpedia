@@ -1072,6 +1072,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1073779253160233885, guid: df19ade03c293c6afba63127d7b9125e, type: 3}
   m_PrefabInstance: {fileID: 1073779252515506965}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &647217289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1073779253160233884, guid: df19ade03c293c6afba63127d7b9125e, type: 3}
+  m_PrefabInstance: {fileID: 1073779252515506965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5babd135b92f8bc9ba012bdefd2423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &704400403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1655,7 @@ GameObject:
   - component: {fileID: 1373649169}
   - component: {fileID: 1373649171}
   - component: {fileID: 1373649170}
+  - component: {fileID: 1373649172}
   m_Layer: 5
   m_Name: Coins
   m_TagString: Untagged
@@ -1711,6 +1723,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373649168}
   m_CullTransparentMesh: 1
+--- !u!114 &1373649172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373649168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e302c2673894211818ab1b6e3d41f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _garden: {fileID: 647217289}
+  _coinText: {fileID: 765734683}
 --- !u!1 &1414127862
 GameObject:
   m_ObjectHideFlags: 0

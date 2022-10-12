@@ -19,6 +19,8 @@ namespace SatriaKelana
         [SerializeField] private PlantStorage _storage;
         [SerializeField] private SelectPlant _selectPlant;
 
+        public event Action<Area> OnAreaCollect;
+
         private Area _selectedArea;
 
         public void Load()
@@ -61,6 +63,7 @@ namespace SatriaKelana
             coin.transform
                 .DOScale(Vector3.one, .25f)
                 .SetLoops(2, LoopType.Yoyo);
+            OnAreaCollect?.Invoke(area);
         }
 
         public void Save()
