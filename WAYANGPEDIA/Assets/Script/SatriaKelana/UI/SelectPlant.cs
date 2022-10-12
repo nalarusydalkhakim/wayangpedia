@@ -16,6 +16,7 @@ namespace SatriaKelana.UI
 
         private Plant _selectedPlant;
         private int _index;
+        private CanvasGroup _group;
 
         public Plant SelectedPlant => _selectedPlant;
         public event Action<SelectPlant> OnSelect;
@@ -23,6 +24,7 @@ namespace SatriaKelana.UI
         private void Awake()
         {
             SetPlant(0);
+            TryGetComponent(out _group);
             _next.onClick.AddListener(OnNext);
             _previous.onClick.AddListener(OnPrevious);
             _select.onClick.AddListener(OnSelectClick);
@@ -76,6 +78,7 @@ namespace SatriaKelana.UI
 
         public void Show()
         {
+            if (_group == null) TryGetComponent(out _group);
             var rectTransform = transform as RectTransform;
             if (rectTransform == null)
             {
@@ -83,13 +86,24 @@ namespace SatriaKelana.UI
                 return;
             }
             gameObject.SetActive(true);
+            _group.alpha = 0;
             transform.position += Vector3.down * rectTransform.rect.height;
             transform.DOLocalMove(Vector3.zero, .25f);
+            _group.DOFade(1f, .25f);
         }
 
         private void Close()
         {
-            gameObject.SetActive(false);
+            var rectTransform = transform as RectTransform;
+            if (rectTransform == null)
+            {
+                Debug.LogWarning("Select plant isn't rect transform");
+                return;
+            }
+
+            transform.DOLocalMove(Vector3.down * rectTransform.rect.height, .25f);
+            _group.DOFade(0f, .25f)
+                .OnComplete(() => gameObject.SetActive(false));
         }
     }
 }
