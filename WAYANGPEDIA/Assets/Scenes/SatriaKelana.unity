@@ -948,18 +948,18 @@ PrefabInstance:
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 842543794}
+      objectReference: {fileID: 842543799}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: SatriaKelana.UI.Menu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1350,6 +1350,8 @@ GameObject:
   - component: {fileID: 842543795}
   - component: {fileID: 842543797}
   - component: {fileID: 842543796}
+  - component: {fileID: 842543799}
+  - component: {fileID: 842543798}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -1415,6 +1417,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842543794}
   m_CullTransparentMesh: 1
+--- !u!225 &842543798
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842543794}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &842543799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842543794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08132e933c82470a9d64eb8b8b968c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group: {fileID: 842543798}
 --- !u!1001 &1000868334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1529,18 +1556,18 @@ PrefabInstance:
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1007868181}
+      objectReference: {fileID: 1007868186}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: SatriaKelana.UI.Menu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1568,6 +1595,8 @@ GameObject:
   - component: {fileID: 1007868182}
   - component: {fileID: 1007868184}
   - component: {fileID: 1007868183}
+  - component: {fileID: 1007868186}
+  - component: {fileID: 1007868185}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -1633,6 +1662,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007868181}
   m_CullTransparentMesh: 1
+--- !u!225 &1007868185
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007868181}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1007868186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007868181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08132e933c82470a9d64eb8b8b968c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group: {fileID: 1007868185}
 --- !u!114 &1331286945 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4343036867670997385, guid: 4f6e0f7a6a5d5d3a19192bfa5503dd0c, type: 3}
@@ -1972,18 +2026,18 @@ PrefabInstance:
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109970097}
+      objectReference: {fileID: 2109970102}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: SatriaKelana.UI.Menu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8944091255541105467, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
       propertyPath: _onToggled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2617,6 +2671,8 @@ GameObject:
   - component: {fileID: 2109970098}
   - component: {fileID: 2109970100}
   - component: {fileID: 2109970099}
+  - component: {fileID: 2109970102}
+  - component: {fileID: 2109970101}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2682,6 +2738,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109970097}
   m_CullTransparentMesh: 1
+--- !u!225 &2109970101
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109970097}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &2109970102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109970097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08132e933c82470a9d64eb8b8b968c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group: {fileID: 2109970101}
 --- !u!1 &2115888559
 GameObject:
   m_ObjectHideFlags: 0
