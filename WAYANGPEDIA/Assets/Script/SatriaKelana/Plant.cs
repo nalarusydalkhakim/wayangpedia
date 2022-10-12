@@ -10,9 +10,11 @@ namespace SatriaKelana
         [SerializeField] private string _name;
         [SerializeField] private List<Sprite> _sprites = new List<Sprite>();
         [SerializeField] private int _duration;
+        [SerializeField] private Sprite _seedSprite;
 
         public string Name => _name;
         public IReadOnlyList<Sprite> Sprites => _sprites;
         public int Duration => _duration;
+        public Sprite SeedSprite => _seedSprite;
     }
 }

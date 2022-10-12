@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SatriaKelana.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utility;
 
@@ -14,6 +16,9 @@ namespace SatriaKelana
         [SerializeField] private GameObject _coin;
         [SerializeField] private RectTransform _coinBar;
         [SerializeField] private PlantStorage _storage;
+        [SerializeField] private SelectPlant _selectPlant;
+
+        private Area _selectedArea;
 
         public void Load()
         {
@@ -38,7 +43,8 @@ namespace SatriaKelana
 
         private void OnPickPlant(Area area)
         {
-            area.SetPlant(_storage.Get(0));
+            _selectedArea = area;
+            _selectPlant.Show();
         }
 
         private void OnCollect(Area area)
@@ -71,6 +77,13 @@ namespace SatriaKelana
         {
             _saveManager.Register(this);
             Load();
+            _selectPlant.OnSelect += OnSelect;
+        }
+
+        private void OnSelect(SelectPlant select)
+        {
+            var plant = select.SelectedPlant;
+            _selectedArea.SetPlant(plant);
         }
     }
 }
