@@ -22,6 +22,7 @@ namespace SatriaKelana.UI
 
         public void Show()
         {
+            if (gameObject.activeSelf) return;
             gameObject.SetActive(true);
             var t = transform;
             var rect = t as RectTransform;
@@ -40,6 +41,7 @@ namespace SatriaKelana.UI
 
         public void Hide()
         {
+            if (!gameObject.activeSelf) return;
             var t = transform;
             var rect = t as RectTransform;
             if (rect == null)
@@ -51,7 +53,7 @@ namespace SatriaKelana.UI
             t.DOLocalMove(Vector3.down * rect.rect.height, .25f);
             if (_group == null) return;
             _group.alpha = 1;
-            _group.DOFade(0f, .25f);
+            _group.DOFade(0f, .25f).OnComplete(() => gameObject.SetActive(false));
         }
     }
 }
