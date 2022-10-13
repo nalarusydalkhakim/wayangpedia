@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEditor;
 #endif
 
-namespace SatriaKelana
+namespace SatriaKelana.UI
 {
     [RequireComponent(typeof(Toggle))]
     public class ToggleButton : MonoBehaviour
