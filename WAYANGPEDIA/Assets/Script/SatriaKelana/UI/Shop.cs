@@ -10,6 +10,7 @@ namespace SatriaKelana.UI
         [SerializeField] private ShopItemButton _itemButton;
         [SerializeField] private GameObject _itemContainer;
         [SerializeField] private SaveManager _saveManager;
+        [SerializeField] private Selector _selector;
 
         private void Awake()
         {
@@ -24,7 +25,7 @@ namespace SatriaKelana.UI
 
         private void OnItemClick(Item item)
         {
-            item.Buy(_inventory);
+            _selector.Show(_storage, "Beli", _storage.Items.IndexOf(item),true);
         }
     }
 }

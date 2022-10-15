@@ -5,13 +5,20 @@ using UnityEngine;
 namespace SatriaKelana
 {
     [CreateAssetMenu(fileName = "New inventory", menuName = "Storage/Inventory", order = 0)]
-    public class Inventory : ScriptableObject, IPersistent
+    public class Inventory : ScriptableObject, IPersistent, IItemStorage
     {
-        [SerializeField] private List<Item> _items = new();
+        private readonly List<Item> _items = new();
         [SerializeField] private ItemStorage _storage;
         private SaveManager _saveManager;
+        IList<Item> IItemStorage.Items => _items;
 
         public IReadOnlyList<Item> Items => _items;
+
+        public Item Get(int index)
+        {
+            if (index < 0 || index >= _items.Count) return null;
+            return _items[index];
+        }
 
         public void Init(SaveManager saveManager)
         {
@@ -25,10 +32,10 @@ namespace SatriaKelana
         {
             _items.Add(item);
         }
-        
+
         public void Save()
         {
-           var items = _items.Select(i => _storage.Items.IndexOf(i)).ToList();
+            var items = _items.Select(i => _storage.Items.IndexOf(i)).ToList();
             _saveManager.BinarySave(items, "Inventory");
         }
 

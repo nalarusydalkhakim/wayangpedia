@@ -6,6 +6,7 @@ namespace SatriaKelana
     [Serializable]
     public abstract class Item : ScriptableObject
     {
+        public virtual string Name => name;
         public abstract int Price { get; }
         public abstract string Description { get; }
         public abstract Sprite Sprite { get; }
