@@ -14,7 +14,7 @@ namespace SatriaKelana
         [SerializeField] private int _harvestCoin;
         [SerializeField] private Sprite _seedSprite;
         [SerializeField] private int _price;
-        [SerializeField] private string _description;
+        [SerializeField] [TextArea] private string _description;
 
         public override string Name => _name;
         public IReadOnlyList<Sprite> Sprites => _sprites;

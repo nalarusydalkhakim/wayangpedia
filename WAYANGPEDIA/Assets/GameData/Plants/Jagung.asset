@@ -21,3 +21,5 @@ MonoBehaviour:
   _duration: 10
   _harvestCoin: 2
   _seedSprite: {fileID: 21300000, guid: fef26583db687c0428fe8d3f0e24d972, type: 3}
+  _price: 0
+  _description: Sebuah jagung

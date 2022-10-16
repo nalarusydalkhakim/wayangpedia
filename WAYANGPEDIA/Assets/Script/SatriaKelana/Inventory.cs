@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,19 +6,25 @@ using UnityEngine;
 namespace SatriaKelana
 {
     [CreateAssetMenu(fileName = "New inventory", menuName = "Storage/Inventory", order = 0)]
-    public class Inventory : ScriptableObject, IPersistent, IItemStorage
+    public class Inventory : ScriptableObject, IPersistent
     {
-        private readonly List<Item> _items = new();
+        [Serializable]
+        public class ItemData
+        {
+            public int Id { get; set; }
+            [field: NonSerialized]
+            public Item Item { get; set; }
+            public int Stack { get; set; }
+        }
+        
+        private readonly List<ItemData> _items = new();
         [SerializeField] private ItemStorage _storage;
         private SaveManager _saveManager;
-        IList<Item> IItemStorage.Items => _items;
-
-        public IReadOnlyList<Item> Items => _items;
 
         public Item Get(int index)
         {
             if (index < 0 || index >= _items.Count) return null;
-            return _items[index];
+            return _items[index].Item;
         }
 
         public void Init(SaveManager saveManager)
@@ -30,27 +37,40 @@ namespace SatriaKelana
 
         public void Add(Item item)
         {
-            _items.Add(item);
+            var existing = _items.FirstOrDefault(i => i.Item == item);
+            if (existing != null)
+            {
+                existing.Stack++;
+                return;
+            }
+            _items.Add(new ItemData
+            {
+                Id = _storage.Items.IndexOf(item),
+                Item = item,
+                Stack = 1
+            });
         }
 
         public void Save()
         {
-            var items = _items.Select(i => _storage.Items.IndexOf(i)).ToList();
-            _saveManager.BinarySave(items, "Inventory");
+            _saveManager.BinarySave(_items, "Inventory");
         }
 
         public void Load()
         {
-            if (!_saveManager.BinaryLoad("Inventory", out List<int> itemIds))
+            if (!_saveManager.BinaryLoad("Inventory", out List<ItemData> items))
             {
                 return;
             }
 
-            var length = _storage.Items.Count;
-            var validIds = itemIds.Where(i => i >= 0 && i < length);
-            foreach (var id in validIds)
+            foreach (var item in items)
             {
-                _items.Add(_storage.Items[id]);
+                _items.Add(new ItemData()
+                {
+                    Id = item.Id,
+                    Item = _storage.Get(item.Id),
+                    Stack = item.Stack
+                });
             }
         }
     }

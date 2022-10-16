@@ -4,15 +4,7 @@ using UnityEngine;
 namespace SatriaKelana
 {
     [CreateAssetMenu(fileName = "New item storage", menuName = "Storage/Item", order = 0)]
-    public class ItemStorage : ScriptableObject, IItemStorage
+    public class ItemStorage : BaseItemStorage
     {
-        [SerializeField] private List<Item> _items;
-        public IList<Item> Items => _items;
-
-        public Item Get(int index)
-        {
-            if (index < 0 || index >= _items.Count) return null;
-            return _items[index];
-        }
     }
 }

@@ -16,8 +16,8 @@ namespace SatriaKelana
         [SerializeField] private SaveManager _saveManager;
         [SerializeField] private GameObject _coin;
         [SerializeField] private RectTransform _coinBar;
-        [SerializeField] private PlantStorage _storage;
-        [SerializeField] private SelectPlant _selectPlant;
+        [SerializeField] private BaseItemStorage _storage;
+        [SerializeField] private Selector _selectPlant;
 
         public event Action<Area> OnAreaCollect;
 
@@ -29,9 +29,9 @@ namespace SatriaKelana
             if (!success) return;
             foreach (var state in states)
             {
-                var plant = _storage.Get(state.PlantIndex);
-                if (plant == null) continue;
-                
+                var item = _storage.Get(state.PlantIndex);
+                if (item == null || item is not Plant plant) continue;
+
                 var area = _areas[state.Index];
                 var constraint = state.Constraint;
                 area.Load(plant, constraint);
@@ -72,7 +72,7 @@ namespace SatriaKelana
             {
                 Index = i,
                 Constraint = a.CurrentConstraint,
-                PlantIndex = _storage.Plants.IndexOf(a.Plant)
+                PlantIndex = _storage.Items.IndexOf(a.Plant)
             }).ToList();
             _saveManager.BinarySave(records, name);
         }
@@ -84,9 +84,10 @@ namespace SatriaKelana
             _selectPlant.OnSelect += OnSelect;
         }
 
-        private void OnSelect(SelectPlant select)
+        private void OnSelect(Selector select)
         {
-            var plant = select.SelectedPlant;
+            var item = select.SelectedItem;
+            if (item is not Plant plant) return;
             _selectedArea.SetPlant(plant);
         }
     }

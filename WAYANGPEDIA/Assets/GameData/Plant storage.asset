@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f94ea8f10342d8a8d8f31a90f2f43c, type: 3}
+  m_Script: {fileID: 11500000, guid: 728f29e4603747beae6c829d2c04e10f, type: 3}
   m_Name: Plant storage
   m_EditorClassIdentifier: 
-  _plants:
+  _items:
   - {fileID: 11400000, guid: 86820c6e0624c5ff3af4a0658a87c0ca, type: 2}
   - {fileID: 11400000, guid: 3b9e65cd694d636cb9ab762d4873157e, type: 2}
