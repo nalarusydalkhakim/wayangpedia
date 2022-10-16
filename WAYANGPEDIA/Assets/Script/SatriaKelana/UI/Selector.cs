@@ -9,7 +9,7 @@ namespace SatriaKelana.UI
 {
     public class Selector : MonoBehaviour
     {
-        [SerializeField] private ItemStorage _storage;
+        [SerializeField] private BaseItemStorage _storage;
         [SerializeField] private Image _image, _background;
         [SerializeField] private TextMeshProUGUI _title, _okText;
         [SerializeField] private Button _next, _previous, _select, _close;
@@ -19,12 +19,18 @@ namespace SatriaKelana.UI
         private int _index;
         private CanvasGroup _group, _bgGroup;
         private GameObject _descriptionGO;
+        private IList<Item> _items;
 
         public Item SelectedItem => _selectedItem;
         public event Action<Selector> OnSelect;
 
         private void Awake()
         {
+            if (_storage != null)
+            {
+                _items = _storage.Items;
+            }
+
             SetItem(0);
             _descriptionGO = _description.transform.parent.gameObject;
             TryGetComponent(out _group);
@@ -45,7 +51,7 @@ namespace SatriaKelana.UI
         {
             _image.transform.DOComplete(true);
             _index--;
-            if (_index < 0) _index = _storage.Items.Count - 1;
+            if (_index < 0) _index = _items.Count - 1;
             var sequence = DOTween.Sequence();
             sequence.Append(_image.transform.DOMove(_next.transform.position, .1f));
             sequence.AppendCallback(() => _image.transform.position = _previous.transform.position);
@@ -59,7 +65,7 @@ namespace SatriaKelana.UI
         private void OnNext()
         {
             _image.transform.DOComplete(true);
-            _index = (_index + 1) % _storage.Items.Count;
+            _index = (_index + 1) % _items.Count;
             var sequence = DOTween.Sequence();
             sequence.Append(_image.transform.DOMove(_previous.transform.position, .1f));
             sequence.AppendCallback(() => _image.transform.position = _next.transform.position);
@@ -72,9 +78,9 @@ namespace SatriaKelana.UI
 
         private void SetItem(int index)
         {
+            if (index < 0 || index >= _items.Count) return;
             _index = index;
-            var item = _storage.Get(index);
-            if (item == null) return;
+            var item = _items[index];
             _image.sprite = item.Sprite;
             _title.text = item.Name;
             _description.text = item.Description;
@@ -101,9 +107,9 @@ namespace SatriaKelana.UI
             _bgGroup.DOFade(1f, .25f);
         }
 
-        public void Show(ItemStorage storage, string okText, int index, bool showDescription = false)
+        public void Show(IList<Item> items, string okText, int index, bool showDescription = false)
         {
-            _storage = storage;
+            _items = items;
             SetItem(index);
             _okText.text = okText;
             if (showDescription)
@@ -141,7 +147,8 @@ namespace SatriaKelana.UI
             if (descriptionRect == null) return;
             var target = descriptionRect.anchoredPosition + Vector2.down * descriptionRect.rect.height;
             DOTween.To(() => descriptionRect.anchoredPosition.y,
-                y => descriptionRect.anchoredPosition = new Vector2(descriptionRect.anchoredPosition.x, y), target.y, .25f);
+                y => descriptionRect.anchoredPosition = new Vector2(descriptionRect.anchoredPosition.x, y), target.y,
+                .25f);
         }
     }
 }

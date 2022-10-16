@@ -25,7 +25,7 @@ namespace SatriaKelana.UI
 
         private void OnItemClick(Item item)
         {
-            _selector.Show(_storage, "Beli", _storage.Items.IndexOf(item),true);
+            _selector.Show(_storage.Items, "Beli", _storage.Items.IndexOf(item),true);
         }
     }
 }
