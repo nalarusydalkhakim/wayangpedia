@@ -96,7 +96,9 @@ MonoBehaviour:
   _saveManager: {fileID: 0}
   _coin: {fileID: 4000848786313797433, guid: e00220da3767e328aa90d0c3b1f3a19e, type: 3}
   _coinBar: {fileID: 0}
-  _storage: {fileID: 11400000, guid: aab41af7cf2962edc96d3181e377a89d, type: 2}
+  _storage: {fileID: 11400000, guid: a8524d13b51b6fe5b9f94118b34b3c49, type: 2}
+  _selectPlant: {fileID: 0}
+  _coinManager: {fileID: 11400000, guid: 2bd0ad6a42afe4239b6dc976bdba40e2, type: 2}
 --- !u!1001 &1073779252653425054
 PrefabInstance:
   m_ObjectHideFlags: 0

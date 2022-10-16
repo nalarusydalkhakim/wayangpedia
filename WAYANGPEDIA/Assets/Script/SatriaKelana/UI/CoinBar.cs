@@ -6,23 +6,17 @@ namespace SatriaKelana.UI
 {
     public class CoinBar : MonoBehaviour
     {
-        [SerializeField] private Garden _garden;
+        [SerializeField] private CoinManager _manager;
         [SerializeField] private TextMeshProUGUI _coinText;
 
         private void Awake()
         {
-            _garden.OnAreaCollect += OnAreaCollect;
-            UpdateCoin();
+            _manager.OnCoinChanged += UpdateCoin;
+            UpdateCoin(_manager.Coin);
         }
 
-        private void OnAreaCollect(Area area)
+        private void UpdateCoin(int coin)
         {
-            UpdateCoin();
-        }
-
-        private void UpdateCoin()
-        {
-            var coin = PlayerPrefs.GetInt("Coin", 0);
             _coinText.text = coin.ToString();
         }
     }

@@ -11,6 +11,7 @@ namespace SatriaKelana.UI
         [SerializeField] private GameObject _itemContainer;
         [SerializeField] private SaveManager _saveManager;
         [SerializeField] private Selector _selector;
+        [SerializeField] private CoinManager _coinManager;
 
         private void Awake()
         {
@@ -21,11 +22,19 @@ namespace SatriaKelana.UI
                 button.SetItem(item);
                 button.OnItemClick += OnItemClick;
             }
+
+            _selector.OnSelect += OnItemSelect;
         }
 
         private void OnItemClick(Item item)
         {
             _selector.Show(_storage.Items, "Beli", _storage.Items.IndexOf(item),true);
+        }
+
+        private void OnItemSelect(Selector selector)
+        {
+            if (_coinManager.Coin < selector.SelectedItem.Price) return;
+            _coinManager.Subtract(selector.SelectedItem.Price);
         }
     }
 }

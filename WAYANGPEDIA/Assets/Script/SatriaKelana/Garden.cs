@@ -18,6 +18,7 @@ namespace SatriaKelana
         [SerializeField] private RectTransform _coinBar;
         [SerializeField] private BaseItemStorage _storage;
         [SerializeField] private Selector _selectPlant;
+        [SerializeField] private CoinManager _coinManager;
 
         public event Action<Area> OnAreaCollect;
 
@@ -63,6 +64,7 @@ namespace SatriaKelana
             coin.transform
                 .DOScale(Vector3.one, .25f)
                 .SetLoops(2, LoopType.Yoyo);
+            _coinManager.Add(area.Plant.HarvestCoin);
             OnAreaCollect?.Invoke(area);
         }
 
