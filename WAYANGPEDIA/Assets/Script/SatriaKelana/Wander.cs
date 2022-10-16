@@ -147,7 +147,7 @@ namespace SatriaKelana
             {
                 case State.Idle:
                     _currentStatus.TimeStart = DateTime.Now;
-                    _currentStatus.TimeEnd = DateTime.Now.AddSeconds(5);
+                    _currentStatus.TimeEnd = DateTime.Now.AddMinutes(5);
                     EnterState(State.Wandering);
                     break;
                 case State.Wandering:
