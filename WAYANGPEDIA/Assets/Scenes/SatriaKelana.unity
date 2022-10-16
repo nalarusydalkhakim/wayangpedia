@@ -2701,7 +2701,7 @@ MonoBehaviour:
     _button: {fileID: 115227107}
     _text: {fileID: 538727579}
     _image: {fileID: 823475299}
-  _accessories:
+  _accessory:
     _button: {fileID: 1649910051}
     _text: {fileID: 1085787101}
     _image: {fileID: 1498721451}
@@ -2709,6 +2709,9 @@ MonoBehaviour:
   _depart: {fileID: 1132850097}
   _selector: {fileID: 191782832}
   _time: {fileID: 792356831}
+  _departText: {fileID: 887241775}
+  _saveManager: {fileID: 11400000, guid: bbb64be740c628a2bbae9fafafe9e29b, type: 2}
+  _storage: {fileID: 11400000, guid: 356707edf5ab8e4debed0a170a67e7cd, type: 2}
 --- !u!114 &1280134026 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1803205713872985872, guid: e8bbf384582475dd3b83339831b92e56, type: 3}
