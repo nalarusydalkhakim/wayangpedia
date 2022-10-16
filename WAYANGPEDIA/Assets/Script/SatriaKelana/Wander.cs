@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using SatriaKelana.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,20 @@ namespace SatriaKelana
 {
     public class Wander : MonoBehaviour
     {
+        public enum State
+        {
+            Idle,
+            Wandering
+        }
+
+        [Serializable]
+        public class WanderData
+        {
+            public State State { get; set; }
+            public DateTime TimeStart { get; set; }
+            public DateTime TimeEnd { get; set; }
+        }
+        
         [Serializable]
         public class Selection
         {
@@ -29,12 +44,70 @@ namespace SatriaKelana
 
         [SerializeField] private Button _depart;
         [SerializeField] private Selector _selector;
+        [SerializeField] private TextMeshProUGUI _time;
+
+        private WanderData _currentStatus;
 
         private void Awake()
         {
             _food.Button.onClick.AddListener(() => AttachSelect(OnFoodSelect));
             _item.Button.onClick.AddListener(() => AttachSelect(OnItemSelect));
             _accessories.Button.onClick.AddListener(() => AttachSelect(OnAccessoriesSelect));
+            _depart.onClick.AddListener(Depart);
+            _currentStatus = new WanderData
+            {
+                State = State.Idle
+            };
+        }
+
+        private void Update()
+        {
+            if (_currentStatus == null) return;
+            switch (_currentStatus.State)
+            {
+                case State.Idle:
+                    HandleIdle();
+                    break;
+                case State.Wandering:
+                    HandleWandering();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void HandleIdle()
+        {
+            _time.text = "||";
+        }
+
+        private void HandleWandering()
+        {
+            var timeLeft = (_currentStatus.TimeEnd - DateTime.Now);
+            _time.text = $"{timeLeft:mm\\:ss}";
+            
+            if (!(timeLeft.TotalSeconds <= 0)) return;
+            _currentStatus.State = State.Idle;
+            SetButtonState(true);
+        }
+
+        private void Depart()
+        {
+            _currentStatus = new WanderData
+            {
+                State = State.Wandering,
+                TimeStart = DateTime.Now,
+                TimeEnd = DateTime.Now.AddMinutes(5)
+            };
+            SetButtonState(false);
+        }
+
+        private void SetButtonState(bool active)
+        {
+            _depart.enabled = active;
+            _food.Button.enabled = active;
+            _item.Button.enabled = active;
+            _accessories.Button.enabled = active;
         }
 
         private void OnFoodSelect(Selector selector)
