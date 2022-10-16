@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e6fbeb72d84f2da99791d9f5891e68, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 7a2c1e7888f04edca6292aa20c7d3357, type: 3}
+  m_Name: Apem
   m_EditorClassIdentifier: 
-  _storage: {fileID: 11400000, guid: 356707edf5ab8e4debed0a170a67e7cd, type: 2}
-  _saveManager: {fileID: 11400000, guid: bbb64be740c628a2bbae9fafafe9e29b, type: 2}
+  _price: 0
+  _description: 
+  _sprite: {fileID: 21300000, guid: d6052604c2491e94fa1af50368825bae, type: 3}

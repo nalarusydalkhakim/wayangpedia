@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SatriaKelana
 {
     [CreateAssetMenu(menuName = "Item/Plant", fileName = "New plant")]
-    public class Plant : Item
+    public class Plant : BaseItem
     {
         [SerializeField] private string _name;
         [SerializeField] private List<Sprite> _sprites = new List<Sprite>();

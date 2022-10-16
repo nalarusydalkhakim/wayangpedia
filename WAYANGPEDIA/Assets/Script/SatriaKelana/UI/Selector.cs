@@ -15,13 +15,13 @@ namespace SatriaKelana.UI
         [SerializeField] private Button _next, _previous, _select, _close;
         [SerializeField] private TextMeshProUGUI _description;
 
-        private Item _selectedItem;
         private int _index;
         private CanvasGroup _group, _bgGroup;
         private GameObject _descriptionGO;
-        private IList<Item> _items;
+        private IList<BaseItem> _items;
 
-        public Item SelectedItem => _selectedItem;
+        public BaseItem SelectedItem { get; private set; }
+
         public event Action<Selector> OnSelect;
 
         private void Awake()
@@ -29,9 +29,9 @@ namespace SatriaKelana.UI
             if (_storage != null)
             {
                 _items = _storage.Items;
+                SetItem(0);
             }
 
-            SetItem(0);
             _descriptionGO = _description.transform.parent.gameObject;
             TryGetComponent(out _group);
             _background.TryGetComponent(out _bgGroup);
@@ -84,7 +84,7 @@ namespace SatriaKelana.UI
             _image.sprite = item.Sprite;
             _title.text = item.Name;
             _description.text = item.Description;
-            _selectedItem = item;
+            SelectedItem = item;
         }
 
         public void Show()
@@ -107,7 +107,7 @@ namespace SatriaKelana.UI
             _bgGroup.DOFade(1f, .25f);
         }
 
-        public void Show(IList<Item> items, string okText, int index, bool showDescription = false)
+        public void Show(IList<BaseItem> items, string okText, int index = 0, bool showDescription = false)
         {
             _items = items;
             SetItem(index);

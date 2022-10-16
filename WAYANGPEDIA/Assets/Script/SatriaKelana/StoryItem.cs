@@ -5,7 +5,7 @@ namespace SatriaKelana
 {
     [Serializable]
     [CreateAssetMenu(fileName = "New story item", menuName = "Item/Story", order = 0)]
-    public class StoryItem : Item
+    public class StoryItem : BaseItem
     {
         [SerializeField] private int _price;
         [SerializeField] private string _description;

@@ -8,10 +8,10 @@ namespace SatriaKelana.UI
     public class ShopItemButton : MonoBehaviour
     {
         [SerializeField] private Image _image;
-        private Item _item;
+        private BaseItem _item;
         private Button _button;
 
-        public event Action<Item> OnItemClick;
+        public event Action<BaseItem> OnItemClick;
 
         private void Awake()
         {
@@ -24,7 +24,7 @@ namespace SatriaKelana.UI
             OnItemClick?.Invoke(_item);
         }
 
-        public void SetItem(Item item)
+        public void SetItem(BaseItem item)
         {
             _item = item;
             _image.sprite = _item.Sprite;

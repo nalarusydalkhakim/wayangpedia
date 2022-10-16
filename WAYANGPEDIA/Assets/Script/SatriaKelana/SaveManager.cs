@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,9 +8,11 @@ using UnityEngine;
 
 namespace SatriaKelana
 {
-    public class SaveManager : MonoBehaviour
+    [CreateAssetMenu(fileName = "New save manager", menuName = "Manager/Save")]
+    public class SaveManager : ScriptableObject
     {
-        List<IPersistent> _items = new List<IPersistent>();
+        private readonly List<IPersistent> _items = new();
+
         public void Register(IPersistent item)
         {
             _items.Add(item);
@@ -67,7 +70,7 @@ namespace SatriaKelana
             return $"{Application.persistentDataPath}/{name}.wayangpedia";
         }
 
-        private void OnApplicationQuit()
+        public void SaveAll()
         {
             Debug.Log("Saving all data..");
             foreach (var item in _items)

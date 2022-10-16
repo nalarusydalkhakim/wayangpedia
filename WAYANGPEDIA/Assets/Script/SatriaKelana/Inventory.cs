@@ -13,37 +13,36 @@ namespace SatriaKelana
         {
             public int Id { get; set; }
             [field: NonSerialized]
-            public Item Item { get; set; }
+            public BaseItem Item { get; set; }
             public int Stack { get; set; }
         }
-        
-        private readonly List<ItemData> _items = new();
-        [SerializeField] private ItemStorage _storage;
-        private SaveManager _saveManager;
 
-        public Item Get(int index)
+        [SerializeField] private ItemStorage _storage;
+        [SerializeField] private SaveManager _saveManager;
+        public List<ItemData> Items { get; } = new();
+
+        public BaseItem Get(int index)
         {
-            if (index < 0 || index >= _items.Count) return null;
-            return _items[index].Item;
+            if (index < 0 || index >= Items.Count) return null;
+            return Items[index].Item;
         }
 
-        public void Init(SaveManager saveManager)
+        public void Init()
         {
-            _items.Clear();
-            _saveManager = saveManager;
+            Items.Clear();
             _saveManager.Register(this);
             Load();
         }
 
-        public void Add(Item item)
+        public void Add(BaseItem item)
         {
-            var existing = _items.FirstOrDefault(i => i.Item == item);
+            var existing = Items.FirstOrDefault(i => i.Item == item);
             if (existing != null)
             {
                 existing.Stack++;
                 return;
             }
-            _items.Add(new ItemData
+            Items.Add(new ItemData
             {
                 Id = _storage.Items.IndexOf(item),
                 Item = item,
@@ -53,7 +52,7 @@ namespace SatriaKelana
 
         public void Save()
         {
-            _saveManager.BinarySave(_items, "Inventory");
+            _saveManager.BinarySave(Items, "Inventory");
         }
 
         public void Load()
@@ -65,7 +64,7 @@ namespace SatriaKelana
 
             foreach (var item in items)
             {
-                _items.Add(new ItemData()
+                Items.Add(new ItemData()
                 {
                     Id = item.Id,
                     Item = _storage.Get(item.Id),

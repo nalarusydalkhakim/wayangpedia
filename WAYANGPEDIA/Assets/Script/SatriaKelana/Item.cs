@@ -1,19 +1,15 @@
-using System;
 using UnityEngine;
 
 namespace SatriaKelana
 {
-    [Serializable]
-    public abstract class Item : ScriptableObject
+    [CreateAssetMenu(fileName = "New item", menuName = "Item/Item")]
+    public class Item : BaseItem
     {
-        public virtual string Name => name;
-        public abstract int Price { get; }
-        public abstract string Description { get; }
-        public abstract Sprite Sprite { get; }
-
-        public virtual void Buy(Inventory inventory)
-        {
-            inventory.Add(this);
-        }
+        [SerializeField] private int _price;
+        [SerializeField] private string _description;
+        [SerializeField] private Sprite _sprite;
+        public override int Price => _price;
+        public override string Description => _description;
+        public override Sprite Sprite => _sprite;
     }
 }

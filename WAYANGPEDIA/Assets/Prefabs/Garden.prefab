@@ -93,7 +93,7 @@ MonoBehaviour:
   - {fileID: 3123749677263594856}
   - {fileID: 3123749675760798039}
   - {fileID: 3123749677334848206}
-  _saveManager: {fileID: 0}
+  _saveManager: {fileID: 11400000, guid: bbb64be740c628a2bbae9fafafe9e29b, type: 2}
   _coin: {fileID: 4000848786313797433, guid: e00220da3767e328aa90d0c3b1f3a19e, type: 3}
   _coinBar: {fileID: 0}
   _storage: {fileID: 11400000, guid: a8524d13b51b6fe5b9f94118b34b3c49, type: 2}
